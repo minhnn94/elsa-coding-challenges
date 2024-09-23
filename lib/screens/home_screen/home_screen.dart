@@ -1,4 +1,5 @@
 import 'package:elsa_coding_challenge/routers/router_path.dart';
+import 'package:elsa_coding_challenge/shared_widgets/base_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -10,16 +11,9 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text(
-          'Home Screen',
-          style: TextStyle(
-              color: Colors.white, fontSize: 20, fontWeight: FontWeight.w700),
-        ),
-      ),
-      body: Column(
+    return BaseScaffold(
+      title: 'Login Screen',
+      child: Column(
         children: [
           const SizedBox(
             height: 100,

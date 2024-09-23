@@ -1,23 +1,45 @@
-class User {
+import 'package:equatable/equatable.dart';
+
+class User extends Equatable {
   final String name;
   final int score;
   final int position;
+  final String id;
 
-  User(this.name, this.score, this.position);
-}
+  const User(this.name, this.score, this.position, this.id);
+  User copyWith({
+    String? name,
+    int? score,
+    int? position,
+    String? id,
+  }) {
+    return User(
+      name ?? this.name,
+      score ?? this.score,
+      position ?? this.position,
+      id ?? this.id,
+    );
+  }
 
-List<User> getLeaderboard() {
-  return [
-    User('Alice', 1000, 1),
-    User('Bob', 900, 2),
-    User('Charlie', 850, 3),
-    User('David', 800, 4),
-    User('Eve', 750, 5),
-    User('Frank', 700, 6),
-    User('Grace', 650, 7),
-    User('Hannah', 600, 8),
-    User('Ivy', 550, 9),
-    User('Jack', 500, 10),
-    // Add more users as needed
-  ];
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
+      json['name'] as String,
+      json['score'] as int,
+      json['position'] as int,
+      json['id'] as String,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'score': score,
+      'position': position,
+      'id': id,
+    };
+  }
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [id];
 }

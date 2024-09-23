@@ -1,5 +1,6 @@
 import 'package:elsa_coding_challenge/common/constants/sized_box_constants.dart';
 import 'package:elsa_coding_challenge/routers/router_path.dart';
+import 'package:elsa_coding_challenge/shared_widgets/base_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -27,12 +28,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('Login Screen'),
-      ),
-      body: Padding(
+    return BaseScaffold(
+      title: 'Login Screen',
+      child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,

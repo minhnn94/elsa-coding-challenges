@@ -1,4 +1,7 @@
+import 'package:elsa_coding_challenge/screens/quiz_game_screen/components/question_component/widgets/question_tittle_widget.dart';
 import 'package:flutter/material.dart';
+
+import 'widgets/question_component_answers_widget.dart';
 
 class QuestionScreen extends StatefulWidget {
   const QuestionScreen({super.key});
@@ -27,14 +30,14 @@ class _QuestionScreenState extends State<QuestionScreen> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: EdgeInsets.all(16.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          _buildQuestion(),
-          const SizedBox(height: 20),
-          ..._buildAnswerButtons(),
+          QuestionTitleWidget(),
+          SizedBox(height: 20),
+          Expanded(child: QuestionComponentAnswersWidget()),
         ],
       ),
     );
