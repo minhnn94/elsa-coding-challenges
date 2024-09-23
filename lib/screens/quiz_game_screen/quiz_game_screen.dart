@@ -1,5 +1,4 @@
 import 'package:elsa_coding_challenge/common/constants/sized_box_constants.dart';
-import 'package:elsa_coding_challenge/data/models/user_model.dart';
 import 'package:elsa_coding_challenge/screens/quiz_game_screen/components/leader_board_component/leader_board_component.dart';
 import 'package:elsa_coding_challenge/screens/quiz_game_screen/components/leader_board_component/leader_board_component_cubit.dart';
 import 'package:elsa_coding_challenge/screens/quiz_game_screen/components/question_component/question_component.dart';
@@ -26,10 +25,8 @@ class QuizGameScreen extends StatelessWidget {
         ],
         child: const Column(children: [
           SIZED_H16,
-          LeaderboardScreen(
-            currentUser: User('Minh', 10, 100, ''),
-          ),
-          Expanded(child: QuestionScreen())
+          LeaderboardScreen(),
+          Expanded(child: QuestionComponentScreen())
         ]),
       ),
     );

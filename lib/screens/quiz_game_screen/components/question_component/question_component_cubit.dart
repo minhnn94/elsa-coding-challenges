@@ -46,12 +46,21 @@ class QuestionComponentCubit extends Cubit<QuestionComponentState> {
   Future<void> handleOnPressChoiceAnswer(String answer) async {
     if (state.choiceAnswer.isEmpty) {
       emit(state.copyWith(choiceAnswer: answer));
+      onPostAnswer(answer == state.correctAnswer);
       await Future.delayed(const Duration(milliseconds: 3500));
-      resetData();
-      loadingQuestion();
+      loadingNewQuestion();
     } else {
       return;
     }
+  }
+
+  Future<void> onPostAnswer(bool isCorrect) async {
+    await Future.delayed(const Duration(milliseconds: 1500));
+  }
+
+  void loadingNewQuestion() {
+    resetData();
+    loadingQuestion();
   }
 
   void resetData() {

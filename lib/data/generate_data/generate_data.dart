@@ -15,7 +15,7 @@ class UsersHelper {
   factory UsersHelper() {
     return _instance;
   }
-  User myAccount = User('Minh Palmy', 0, 100, '_myId');
+  User myAccount = const User('Minh Palmy', 0, 100, '_myId');
 
   List<User> getUsers(int count) {
     List<User> users = [];
@@ -62,5 +62,6 @@ class UsersHelper {
 
   void resetData() {
     maxValue = 0;
+    myAccount = const User('Minh Palmy', 0, 100, '_myId');
   }
 }

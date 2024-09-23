@@ -10,7 +10,7 @@ final GoRouter routerConfig = GoRouter(
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
-        return const HomeScreen();
+        return const LoginScreen();
       },
       routes: <RouteBase>[
         GoRoute(

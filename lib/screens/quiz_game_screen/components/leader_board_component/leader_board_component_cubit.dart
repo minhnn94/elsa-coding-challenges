@@ -14,6 +14,7 @@ class LeaderBoardComponentCubit extends Cubit<LeaderBoardComponentState>
   }
   final _repository = UserRepository();
   void initialData() {
+    emit(state.copyWith(myAccount: UsersHelper().myAccount));
     MockSocketService().connect('https://mock.socket.com', 4);
     MockSocketService().addListener(this);
     loadingData();
@@ -34,26 +35,43 @@ class LeaderBoardComponentCubit extends Cubit<LeaderBoardComponentState>
 
   @override
   void onMessage(User user) {
-    if (user == state.myAccount) {
+    if (user.id == state.myAccount.id) {
       emit(state.copyWith(myAccount: user));
     }
     _handleAddNewUserToTopList(user);
   }
 
   void _handleAddNewUserToTopList(User user) {
-    if (state.users.contains(user)) {
-      final index = state.users.indexWhere((element) => element == user);
-      final users = [...state.users];
-      users[index] = user;
-
-      users.sort((a, b) => a.score.compareTo(b.score));
-      emit(state.copyWith(users: []));
-      emit(state.copyWith(users: users.reversed.toList()));
+    if (user.id == UsersHelper().myAccount.id) {
+      UsersHelper().myAccount = user;
+    }
+    state.copyWith(myAccount: UsersHelper().myAccount);
+    if (state.users.indexWhere((element) => element.id == user.id) >= 0) {
+      final users = _getUsersWhenContainUserUpdate(user);
+      final usersSort = _getUsersAfterSort(users);
+      _updateUsers(usersSort);
     } else {
       final users = [...state.users, user];
-      users.sort((a, b) => a.score.compareTo(b.score));
-      emit(state.copyWith(users: []));
-      emit(state.copyWith(users: users.reversed.toList()));
+      final usersSort = _getUsersAfterSort(users);
+      _updateUsers(usersSort);
     }
+  }
+
+  void _updateUsers(List<User> users) {
+    emit(state.copyWith(users: []));
+    emit(state.copyWith(users: users));
+  }
+
+  List<User> _getUsersWhenContainUserUpdate(User user) {
+    final index = state.users.indexWhere((element) => element.id == user.id);
+    final users = [...state.users];
+    users[index] = user;
+    return users;
+  }
+
+  List<User> _getUsersAfterSort(List<User> users) {
+    users.sort((a, b) => a.score.compareTo(b.score));
+    final result = users.reversed.toList();
+    return result;
   }
 }

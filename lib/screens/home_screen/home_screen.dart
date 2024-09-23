@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseScaffold(
-      title: 'Login Screen',
+      title: 'Home Screen',
       child: Column(
         children: [
           const SizedBox(

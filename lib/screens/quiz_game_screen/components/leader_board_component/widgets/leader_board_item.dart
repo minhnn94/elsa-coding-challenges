@@ -14,7 +14,7 @@ class LeaderboardItem extends StatelessWidget {
     required this.position,
     this.isCurrentUser = false,
   });
-  Color getColorOfTop(int position) {
+  Color getColorOfTop(int position, BuildContext context) {
     if (position == 1) {
       return const Color(0xFFFFD700);
     } else if (position == 2) {
@@ -22,7 +22,7 @@ class LeaderboardItem extends StatelessWidget {
     } else if (position == 3) {
       return const Color(0xFFCD7F32);
     } else {
-      return Colors.transparent;
+      return Theme.of(context).colorScheme.inversePrimary;
     }
   }
 
@@ -44,23 +44,25 @@ class LeaderboardItem extends StatelessWidget {
             children: [
               // Position
               Container(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                width: 40,
+                height: 40,
                 decoration: BoxDecoration(
-                    color: getColorOfTop(position),
+                    color: getColorOfTop(position, context),
                     borderRadius: BorderRadius.circular(20),
-                    border:
-                        Border.all(color: getColorOfTop(position), width: 4),
+                    border: Border.all(
+                        color: getColorOfTop(position, context), width: 4),
                     gradient: LinearGradient(colors: [
-                      getColorOfTop(position).withOpacity(0.8),
-                      getColorOfTop(position).withOpacity(0.3)
+                      getColorOfTop(position, context).withOpacity(0.8),
+                      getColorOfTop(position, context).withOpacity(0.3)
                     ])),
-                child: Text(
-                  '$position',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
+                child: Center(
+                  child: Text(
+                    '$position',
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),

@@ -20,10 +20,25 @@ class _QuestionComponentCountDownWidgetState
   @override
   void initState() {
     super.initState();
+    _initController();
+    _listeningController();
+  }
+
+  void _initController() {
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(seconds: durationTime),
     )..forward();
+  }
+
+  void _listeningController() {
+    _controller.addListener(() {
+      if (_controller.value == 1) {
+        context.read<QuestionComponentCubit>().loadingNewQuestion();
+        _controller.reset();
+        _controller.forward();
+      }
+    });
   }
 
   @override

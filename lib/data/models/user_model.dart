@@ -1,6 +1,4 @@
-import 'package:equatable/equatable.dart';
-
-class User extends Equatable {
+class User {
   final String name;
   final int score;
   final int position;
@@ -38,8 +36,4 @@ class User extends Equatable {
       'id': id,
     };
   }
-
-  @override
-  // TODO: implement props
-  List<Object?> get props => [id];
 }

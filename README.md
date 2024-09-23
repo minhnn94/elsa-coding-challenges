@@ -2,15 +2,6 @@
 
 This project to apply Elsa coding challenge
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- There are 3 screen in this Demo
+- Using Dio to Fetch Data from Fake Question from : https://the-trivia-api.com/v2/questions
+- Fake Socket Service by Push message by Timer.
